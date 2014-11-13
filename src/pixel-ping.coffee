@@ -17,7 +17,8 @@ store = {}
 
 # Record a single incoming hit from the remote pixel.
 record = (params) ->
-  return unless key = params.query?.key
+  # return unless key = params.query?.key
+  return unless key = params.key
   store[key] or= 0
   store[key] +=  1
 
@@ -58,8 +59,9 @@ log = (hash) ->
 # Create a `Server` object. When a request comes in, ensure that it's looking
 # for `pixel.gif`. If it is, serve the pixel and record the request.
 server = http.createServer (req, res) ->
-  req.url = req.url + '?key=' + req.session.id
+  # req.url = req.url + '?key=' + req.session.id
   params = url.parse req.url, true
+  params.key = req.session.id
   if params.pathname is '/pixel.gif'
     res.writeHead 200, pixelHeaders
     # res.write('request.session: \n' + JSON.stringify(req.session, 2, true))
