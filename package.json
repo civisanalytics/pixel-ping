@@ -18,5 +18,8 @@
   },
   "bin":          {
     "pixel-ping": "./bin/pixel-ping"
+  },
+  "dependencies": {
+    "sesh": "Marak/session.js#386d98c87639f9615dbd9f0ef10510da45c0e047"
   }
 }
